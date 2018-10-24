@@ -14,3 +14,18 @@
 
 1540169416 /home/blackedhs/Programacion/My_builder/my_builder/builder.h
 
+1540353642 source:/home/blackedhs/Programacion/creador/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"builder.h"
+
+1540353624 /home/blackedhs/Programacion/creador/builder.h
+
+1540353610 source:/home/blackedhs/Programacion/creador/builder.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+

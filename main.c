@@ -35,18 +35,13 @@ int main()
     }
     fclose(pArchivo);
     */
+    i=0;
     pArchivo=fopen("estructura.h","r+");
     if(pArchivo==NULL){
         printf("\nHubo un problema al abrir el archivo");
     }else{
-        do{
-            fread(aux,sizeof(aux),1,pArchivo);
-        }while(!feof(pArchivo));
-        buil_buscarCamposYTipos(aux,strlen(aux),arrayRead);
-        for(i=0;i<10;i+=2){
-           // printf("\n%s %s",arrayRead[i],arrayRead[i+1]);
+        buil_buscarCamposYTipos(pArchivo,&cantidad,arrayRead);
 
-        }
 
     }
 

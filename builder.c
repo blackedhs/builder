@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+static void buil_limpiarChar(char* pBuffer);
 
 int buil_malloc(char* header, char* tipoPuntero,FILE* pArchivo){
     int retorno=-1;
@@ -76,28 +77,41 @@ int buil_campoFloat(char* header,char* nombreFCampo,char* campo,char* tipoPunter
     }
     return retorno;
 }
-int buil_buscarCamposYTipos(char* aux,int len,char* pBuffer){
-    int i;
-    int j=0;
+int buil_buscarCamposYTipos(FILE* pArchivo,int* lenPuntero,char pBuffer[]){
+    int i=0;
     int retorno=-1;
-    if (aux != NULL && pBuffer!= NULL && len>0){
+    char* aux[2];
+    if(pArchivo!= NULL && lenPuntero != NULL && pBuffer !=NULL){
         retorno=0;
-        for(i=0;i<len;i++){
-            if(aux[i]=="c" && aux[i+1]=="h"&&aux[i+2]=="a"&&aux[i+3]=="r"){
-                i+=5;
-                strcpy(pBuffer[j],"char");
-                j++;
-            }else if(aux[i]=="i"&&aux[i+1]=="n"&&aux[i+2]=="t"){
-                i+=4;
-                strcpy(pBuffer[j],"int");
-                j++;
-            }else if(aux[i]=="f"&&aux[i+1]=="l"&&aux[i+2]=="o"&&aux[i+3]=="a"&&aux[i+4]=="t"){
-                i+=6;
-                strcpy(pBuffer[j],"float");
-                j++;
+        do{
+            fscanf(pArchivo,"%s %s",aux[0],aux[1]);
+            if(!strcmp(aux[0],"char")){
+                buil_limpiarChar(aux[1]);
+                i+=2;
+            }else if(!strcmp(aux[0],"int")){
+                buil_limpiarChar(aux[1]);
+                i+=2;
+            }else if(!strcmp(aux[0],"float")){
+                buil_limpiarChar(aux[1]);
+                strcpy(pBuffer[i],aux[0]);
+                strcpy(pBuffer[i+1],aux[1]);
+                i+=2;
             }
+        }while(!feof(pArchivo));
+        *lenPuntero=i;
+        for(i=0;i<*lenPuntero;i+=2){
+            printf("\n%s %s",pBuffer[i],pBuffer[i+1]);
         }
-    return retorno;
     }
-
+    return retorno;
+}
+static void buil_limpiarChar(char* pBuffer){
+    int i=0;
+    do{
+        if(pBuffer[i]=='[' || pBuffer[i]==';'){
+            pBuffer[i]='\0';
+            break;
+        }
+        i++;
+    }while(1);
 }
