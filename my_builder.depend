@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1540169137 source:/home/blackedhs/Programacion/My_builder/my_builder/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"builder.h"
+
+1540169042 source:/home/blackedhs/Programacion/My_builder/my_builder/builder.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+
+1540169416 /home/blackedhs/Programacion/My_builder/my_builder/builder.h
+
